@@ -15,10 +15,25 @@ import java.util.stream.Stream;
  */
 public class OjAssertUtil {
 
-    private static final String TEST_CASE_PATH = "oj/tc/";
+    public static enum QUESTION_TYPE {
+        /**
+         * leetcode
+         */
+        LC,
+        /**
+         * 笔试
+         */
+        TEST
+    }
+
+    private static final String TEST_CASE_BASE_PATH = "oj/tc/";
 
     public static void assertResultWithStream(Consumer<Stream<String>> assertion, String fileName) {
         assertion.accept(Arrays.stream(readFile(fileName).split("\n")));
+    }
+
+    public static void assertResultWithStream(Consumer<Stream<String>> assertion, QUESTION_TYPE type, String fileName) {
+        assertion.accept(Arrays.stream(readFile(fileName, type).split("\n")));
     }
 
     public static void assertResult(Consumer<String> assertion, String fileName) {
@@ -33,6 +48,12 @@ public class OjAssertUtil {
     }
 
     public static void assertEquals(int excepted, int actual) {
+        if (excepted != actual) {
+            System.err.println("excepted: " + excepted + ", actual: " + actual);
+        }
+    }
+
+    public static void assertEquals(boolean excepted, boolean actual) {
         if (excepted != actual) {
             System.err.println("excepted: " + excepted + ", actual: " + actual);
         }
@@ -57,8 +78,12 @@ public class OjAssertUtil {
     }
 
     private static String readFile(String fileName) {
+        return readFile(fileName, QUESTION_TYPE.LC);
+    }
+
+    private static String readFile(String fileName, QUESTION_TYPE questionType) {
         ClassLoader classLoader = OjAssertUtil.class.getClassLoader();
-        URL url = classLoader.getResource(getFilePath(fileName));
+        URL url = classLoader.getResource(getFilePath(fileName, questionType));
         assert url != null;
 
         try (BufferedReader reader = new BufferedReader(new FileReader(url.getFile()))) {
@@ -73,7 +98,7 @@ public class OjAssertUtil {
         }
     }
 
-    private static String getFilePath(String fileName) {
-        return TEST_CASE_PATH + fileName;
+    private static String getFilePath(String fileName, QUESTION_TYPE questionType) {
+        return TEST_CASE_BASE_PATH + questionType.name().toLowerCase() + "/" + fileName;
     }
 }
