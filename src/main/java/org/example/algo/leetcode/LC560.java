@@ -14,7 +14,7 @@ public class LC560 {
 
     public static void main(String[] args) {
         LC560 lc560 = new LC560();
-        OjAssertUtil.assertResultWithStream((tcs) -> {
+        OjAssertUtil.judgeResultWithStream((tcs) -> {
             tcs.forEach(tc -> {
                 String[] inOut = tc.split(" ");
                 String arrStr = inOut[0];

@@ -12,7 +12,7 @@ public class LC31 {
 
     public static void main(String[] args) {
         LC31 lc31 = new LC31();
-        OjAssertUtil.assertResult((tc) -> {
+        OjAssertUtil.judgeResult((tc) -> {
             String[] inOut = tc.split(" ");
             String inStr = inOut[0];
             int[] nums = Arrays.stream(inStr.split(""))

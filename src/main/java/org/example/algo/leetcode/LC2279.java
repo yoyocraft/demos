@@ -11,7 +11,7 @@ import java.util.Arrays;
 public class LC2279 {
     public static void main(String[] args) {
         LC2279 lc2279 = new LC2279();
-        OjAssertUtil.assertResult((tc) -> {
+        OjAssertUtil.judgeResult((tc) -> {
             String[] inOut = tc.split(" ");
             int[] capacity = OjAssertUtil.parseIntArray(inOut[0]);
             int[] rocks = OjAssertUtil.parseIntArray(inOut[1]);

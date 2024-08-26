@@ -15,7 +15,7 @@ public class LC739 {
 
     public static void main(String[] args) {
         LC739 lc739 = new LC739();
-        OjAssertUtil.assertResultWithStream((tcs) -> tcs.forEach(tc -> {
+        OjAssertUtil.judgeResultWithStream((tcs) -> tcs.forEach(tc -> {
             String[] inOut = tc.split(" ");
             String in = inOut[0], expect = inOut[1];
             int[] temperatures = Arrays.stream(in.substring(1, in.length() - 1).split(","))

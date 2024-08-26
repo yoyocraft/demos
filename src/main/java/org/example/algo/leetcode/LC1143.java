@@ -10,7 +10,7 @@ public class LC1143 {
 
     public static void main(String[] args) {
         LC1143 lc1143 = new LC1143();
-        OjAssertUtil.assertResultWithStream((tcs) -> {
+        OjAssertUtil.judgeResultWithStream((tcs) -> {
             tcs.forEach(tc -> {
                 String[] inOut = tc.split(" ");
                 String text1 = inOut[0], text2 = inOut[1];

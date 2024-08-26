@@ -12,7 +12,7 @@ public class LC698 {
 
     public static void main(String[] args) {
         LC698 lc698 = new LC698();
-        OjAssertUtil.assertResult((tc) -> {
+        OjAssertUtil.judgeResult((tc) -> {
             String[] inOut = tc.split(" ");
             int[] nums = OjAssertUtil.parseIntArray(inOut[0]);
             int k = Integer.parseInt(inOut[1]);

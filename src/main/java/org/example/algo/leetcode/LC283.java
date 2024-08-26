@@ -9,7 +9,7 @@ import org.example.algo.OjAssertUtil;
 public class LC283 {
     public static void main(String[] args) {
         LC283 lc283 = new LC283();
-        OjAssertUtil.assertResultWithStream((tcs) -> {
+        OjAssertUtil.judgeResultWithStream((tcs) -> {
             tcs.forEach(tc -> {
                 String[] inOut = tc.split(" ");
                 String inArr = inOut[0];

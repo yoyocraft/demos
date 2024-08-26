@@ -9,7 +9,7 @@ import org.example.algo.OjAssertUtil;
 public class LC55 {
     public static void main(String[] args) {
         LC55 lc55 = new LC55();
-        OjAssertUtil.assertResult((tc) -> {
+        OjAssertUtil.judgeResult((tc) -> {
             String[] inOut = tc.split(" ");
             int[] nums = OjAssertUtil.parseIntArray(inOut[0]);
             boolean expect = Boolean.parseBoolean(inOut[1]);

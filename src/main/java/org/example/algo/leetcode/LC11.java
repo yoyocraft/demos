@@ -9,7 +9,7 @@ import org.example.algo.OjAssertUtil;
 public class LC11 {
     public static void main(String[] args) {
         LC11 lc11 = new LC11();
-        OjAssertUtil.assertResult((tc) -> {
+        OjAssertUtil.judgeResult((tc) -> {
             String[] inOut = tc.split(" ");
             String inArr = inOut[0];
             int actual = lc11.maxArea(OjAssertUtil.parseIntArray(inArr));
