@@ -10,7 +10,7 @@ public interface OjConstant {
 
     String ARRAY_TEMPLATE = "[%s]";
 
-    String ASSERT_TEMPLATE = "expect: %s, actual: %s%n.";
+    String ASSERT_TEMPLATE = "expect: %s, actual: %s.%n";
 
     String EMPTY_LIST = "[]";
 
