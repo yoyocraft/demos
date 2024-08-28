@@ -1,5 +1,6 @@
 package org.example.algo.leetcode;
 
+import org.example.algo.ModelParser;
 import org.example.algo.OjAssertUtil;
 
 /**
@@ -9,14 +10,12 @@ import org.example.algo.OjAssertUtil;
 public class LC283 {
     public static void main(String[] args) {
         LC283 lc283 = new LC283();
-        OjAssertUtil.judgeResultWithStream((tcs) -> {
-            tcs.forEach(tc -> {
-                String[] inOut = tc.split(" ");
-                String inArr = inOut[0];
-                int[] nums = OjAssertUtil.parseIntArray(inArr);
-                lc283.moveZeroes(nums);
-                OjAssertUtil.assertEquals(inOut[1], OjAssertUtil.parseString(nums));
-            });
+        OjAssertUtil.judgeResult((tc) -> {
+            String[] inOut = tc.split(" ");
+            String inArr = inOut[0];
+            int[] nums = ModelParser.parseIntArray(inArr);
+            lc283.moveZeroes(nums);
+            OjAssertUtil.assertEquals(inOut[1], ModelParser.parseString(nums));
         }, "lc283");
     }
 

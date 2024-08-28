@@ -1,5 +1,6 @@
 package org.example.algo.leetcode;
 
+import org.example.algo.ModelParser;
 import org.example.algo.OjAssertUtil;
 
 import java.util.ArrayList;
@@ -16,10 +17,10 @@ public class LC15 {
         LC15 lc15 = new LC15();
         OjAssertUtil.judgeResult((tc) -> {
             String[] inOut = tc.split(" ");
-            int[] nums = OjAssertUtil.parseIntArray(inOut[0]);
+            int[] nums = ModelParser.parseIntArray(inOut[0]);
             String expect = inOut[1];
             List<List<Integer>> actual = lc15.threeSum(nums);
-            String actualStr = OjAssertUtil.parseString(actual);
+            String actualStr = ModelParser.parseString(actual);
             OjAssertUtil.assertEquals(expect, actualStr);
         }, "lc15");
     }

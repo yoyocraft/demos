@@ -9,12 +9,10 @@ import org.example.algo.OjAssertUtil;
 public class LC3146 {
     public static void main(String[] args) {
         LC3146 lc3146 = new LC3146();
-        OjAssertUtil.judgeResultWithStream((tcs) -> {
-            tcs.forEach(tc -> {
-                String[] inOut = tc.split(" ");
-                String s = inOut[0], t = inOut[1];
-                OjAssertUtil.assertEquals(Integer.parseInt(inOut[2]), lc3146.findPermutationDifference(s, t));
-            });
+        OjAssertUtil.judgeResult((tc) -> {
+            String[] inOut = tc.split(" ");
+            String s = inOut[0], t = inOut[1];
+            OjAssertUtil.assertEquals(Integer.parseInt(inOut[2]), lc3146.findPermutationDifference(s, t));
         }, "lc3146");
     }
 

@@ -1,5 +1,6 @@
 package org.example.algo.leetcode;
 
+import org.example.algo.ModelParser;
 import org.example.algo.OjAssertUtil;
 
 import java.util.Arrays;
@@ -13,8 +14,8 @@ public class LC2279 {
         LC2279 lc2279 = new LC2279();
         OjAssertUtil.judgeResult((tc) -> {
             String[] inOut = tc.split(" ");
-            int[] capacity = OjAssertUtil.parseIntArray(inOut[0]);
-            int[] rocks = OjAssertUtil.parseIntArray(inOut[1]);
+            int[] capacity = ModelParser.parseIntArray(inOut[0]);
+            int[] rocks = ModelParser.parseIntArray(inOut[1]);
             int additionalRocks = Integer.parseInt(inOut[2]);
             int expect = Integer.parseInt(inOut[3]);
             int actual = lc2279.maximumBags(capacity, rocks, additionalRocks);

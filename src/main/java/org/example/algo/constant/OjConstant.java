@@ -14,6 +14,7 @@ public interface OjConstant {
 
     String EMPTY_LIST = "[]";
 
+    String NULL_VALUE = "null";
 
 
 }

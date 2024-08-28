@@ -1,5 +1,6 @@
 package org.example.algo.leetcode;
 
+import org.example.algo.ModelParser;
 import org.example.algo.OjAssertUtil;
 
 import java.util.Arrays;
@@ -14,7 +15,7 @@ public class LC698 {
         LC698 lc698 = new LC698();
         OjAssertUtil.judgeResult((tc) -> {
             String[] inOut = tc.split(" ");
-            int[] nums = OjAssertUtil.parseIntArray(inOut[0]);
+            int[] nums = ModelParser.parseIntArray(inOut[0]);
             int k = Integer.parseInt(inOut[1]);
             boolean expect = Boolean.parseBoolean(inOut[2]);
             boolean actual = lc698.canPartitionKSubsets(nums, k);

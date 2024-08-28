@@ -11,13 +11,12 @@ public class LC76 {
 
     public static void main(String[] args) {
         LC76 lc76 = new LC76();
-        OjAssertUtil.judgeResultWithStream((tcs) ->
-                tcs.forEach(tc -> {
-                    String[] singleTc = tc.split("#");
-                    String ss = singleTc[0], ts = singleTc[1], expect = singleTc[2];
-                    String actual = lc76.minWindow(ss, ts);
-                    OjAssertUtil.assertEquals(expect, actual);
-                }), "lc76");
+        OjAssertUtil.judgeResult((tc) -> {
+            String[] singleTc = tc.split("#");
+            String ss = singleTc[0], ts = singleTc[1], expect = singleTc[2];
+            String actual = lc76.minWindow(ss, ts);
+            OjAssertUtil.assertEquals(expect, actual);
+        }, "lc76");
     }
 
     public String minWindow(String ss, String ts) {

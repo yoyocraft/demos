@@ -1,5 +1,6 @@
 package org.example.algo.leetcode;
 
+import org.example.algo.ModelParser;
 import org.example.algo.OjAssertUtil;
 
 import java.util.Arrays;
@@ -14,17 +15,13 @@ public class LC560 {
 
     public static void main(String[] args) {
         LC560 lc560 = new LC560();
-        OjAssertUtil.judgeResultWithStream((tcs) -> {
-            tcs.forEach(tc -> {
-                String[] inOut = tc.split(" ");
-                String arrStr = inOut[0];
-                int[] nums = Arrays.stream(arrStr.substring(1, arrStr.length() - 1).split(","))
-                        .mapToInt(Integer::parseInt)
-                        .toArray();
-                int aim = Integer.parseInt(inOut[1]);
-                int expect = Integer.parseInt(inOut[2]);
-                OjAssertUtil.assertEquals(expect, lc560.subarraySum(nums, aim));
-            });
+        OjAssertUtil.judgeResult((tc) -> {
+            String[] inOut = tc.split(" ");
+            String arrStr = inOut[0];
+            int[] nums = ModelParser.parseIntArray(arrStr);
+            int aim = Integer.parseInt(inOut[1]);
+            int expect = Integer.parseInt(inOut[2]);
+            OjAssertUtil.assertEquals(expect, lc560.subarraySum(nums, aim));
         }, "lc560");
     }
 

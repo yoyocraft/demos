@@ -1,5 +1,6 @@
 package org.example.algo.leetcode;
 
+import org.example.algo.ModelParser;
 import org.example.algo.OjAssertUtil;
 
 /**
@@ -11,7 +12,7 @@ public class LC45 {
         LC45 lc45 = new LC45();
         OjAssertUtil.judgeResult((tc) -> {
             String[] inOut = tc.split(" ");
-            int[] nums = OjAssertUtil.parseIntArray(inOut[0]);
+            int[] nums = ModelParser.parseIntArray(inOut[0]);
             int expect = Integer.parseInt(inOut[1]);
             int actual = lc45.jump(nums);
             OjAssertUtil.assertEquals(expect, actual);

@@ -1,5 +1,6 @@
 package org.example.algo.leetcode;
 
+import org.example.algo.ModelParser;
 import org.example.algo.OjAssertUtil;
 
 /**
@@ -12,7 +13,7 @@ public class LC11 {
         OjAssertUtil.judgeResult((tc) -> {
             String[] inOut = tc.split(" ");
             String inArr = inOut[0];
-            int actual = lc11.maxArea(OjAssertUtil.parseIntArray(inArr));
+            int actual = lc11.maxArea(ModelParser.parseIntArray(inArr));
             OjAssertUtil.assertEquals(Integer.parseInt(inOut[1]), actual);
         }, "lc11");
     }

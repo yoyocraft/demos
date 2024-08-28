@@ -1,5 +1,6 @@
 package org.example.algo;
 
+import org.example.algo.model.TreeNode;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -19,5 +20,22 @@ public class OjAssertUtilTest {
 
         List<List<Integer>> listList = Arrays.asList(Arrays.asList(1, 2), Arrays.asList(3, 4));
         System.out.println(OjAssertUtil.parseString(listList));
+    }
+
+    @Test
+    public void test_buildTree() {
+        String s = "[-10,9,20,null,null,15,7]";
+        TreeNode root = OjAssertUtil.buildTree(s);
+        prePrint(root);
+    }
+
+    void prePrint(TreeNode node) {
+        if (node == null) {
+            return;
+        }
+
+        System.out.println(node.val);
+        prePrint(node.left);
+        prePrint(node.right);
     }
 }

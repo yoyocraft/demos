@@ -1,5 +1,6 @@
 package org.example.algo.leetcode;
 
+import org.example.algo.ModelParser;
 import org.example.algo.OjAssertUtil;
 
 import java.util.ArrayDeque;
@@ -15,19 +16,14 @@ public class LC739 {
 
     public static void main(String[] args) {
         LC739 lc739 = new LC739();
-        OjAssertUtil.judgeResultWithStream((tcs) -> tcs.forEach(tc -> {
+        OjAssertUtil.judgeResult(tc -> {
             String[] inOut = tc.split(" ");
             String in = inOut[0], expect = inOut[1];
-            int[] temperatures = Arrays.stream(in.substring(1, in.length() - 1).split(","))
-                    .mapToInt(Integer::parseInt)
-                    .toArray();
+            int[] temperatures = ModelParser.parseIntArray(in);
             int[] ans = lc739.dailyTemperatures(temperatures);
-            String actual = String.format("[%s]", Arrays.stream(ans)
-                    .mapToObj(String::valueOf)
-                    .collect(Collectors.joining(","))
-            );
+            String actual = ModelParser.parseString(ans);
             OjAssertUtil.assertEquals(expect, actual);
-        }), "lc739");
+        }, "lc739");
     }
 
     public int[] dailyTemperatures(int[] temperatures) {

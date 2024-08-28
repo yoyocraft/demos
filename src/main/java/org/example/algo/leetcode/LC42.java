@@ -1,5 +1,6 @@
 package org.example.algo.leetcode;
 
+import org.example.algo.ModelParser;
 import org.example.algo.OjAssertUtil;
 
 import java.util.ArrayDeque;
@@ -15,7 +16,7 @@ public class LC42 {
         LC42 lc42 = new LC42();
         OjAssertUtil.judgeResult((tc) -> {
             String[] inOut = tc.split(" ");
-            int[] height = OjAssertUtil.parseIntArray(inOut[0]);
+            int[] height = ModelParser.parseIntArray(inOut[0]);
             int expect = Integer.parseInt(inOut[1]);
             int actual = lc42.trap(height);
             OjAssertUtil.assertEquals(expect, actual);
