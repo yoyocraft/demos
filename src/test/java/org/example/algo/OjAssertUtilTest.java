@@ -15,17 +15,17 @@ public class OjAssertUtilTest {
     @Test
     public void test_parserString_List() {
         List<Integer> list = Arrays.asList(1, 2, 3);
-        String result = OjAssertUtil.parseString(list);
+        String result = ModelParser.parseString(list);
         System.out.println(result);
 
         List<List<Integer>> listList = Arrays.asList(Arrays.asList(1, 2), Arrays.asList(3, 4));
-        System.out.println(OjAssertUtil.parseString(listList));
+        System.out.println(ModelParser.parseString(listList));
     }
 
     @Test
     public void test_buildTree() {
         String s = "[-10,9,20,null,null,15,7]";
-        TreeNode root = OjAssertUtil.buildTree(s);
+        TreeNode root = ModelParser.buildTree(s);
         prePrint(root);
     }
 

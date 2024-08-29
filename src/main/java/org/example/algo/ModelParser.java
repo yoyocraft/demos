@@ -5,6 +5,8 @@ import org.example.algo.constant.SymbolConstant;
 import org.example.algo.model.TreeNode;
 
 import java.util.Arrays;
+import java.util.Deque;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -28,6 +30,10 @@ public class ModelParser {
      * @return String[]
      */
     public static String[] parseStringArray(String s) {
+        // bugfix [] 会转换成 [""]
+        if (OjConstant.EMPTY_LIST.equals(s)) {
+            return new String[0];
+        }
         return Arrays.stream(s.substring(1, s.length() - 1).split(SymbolConstant.COMMA))
                 .toArray(String[]::new);
     }
@@ -69,6 +75,56 @@ public class ModelParser {
         }
         // 构造
         return buildTree(nums, 0);
+    }
+
+    public static String serializeTree(TreeNode root) {
+        if (root == null) {
+            return OjConstant.EMPTY_TREE;
+        }
+
+        StringBuilder serial = new StringBuilder(SymbolConstant.LEFT_BRACKET);
+        Deque<TreeNode> que = new LinkedList<>();
+        que.offer(root);
+        while (!que.isEmpty()) {
+            TreeNode node = que.poll();
+            if (node != null) {
+                serial.append(node.val).append(SymbolConstant.COMMA);
+                que.offer(node.left);
+                que.offer(node.right);
+            } else {
+                serial.append(OjConstant.NULL_VALUE).append(SymbolConstant.COMMA);
+            }
+        }
+        // 删除最后一个逗号
+        serial.deleteCharAt(serial.length() - 1);
+        serial.append(SymbolConstant.RIGHT_BRACKET);
+        return serial.toString();
+    }
+
+    public TreeNode deserializeTree(String data) {
+        if (OjConstant.NULL_VALUE.equals(data)) {
+            return null;
+        }
+
+        String[] vals = data.substring(1, data.length() - 1).split(SymbolConstant.COMMA);
+        TreeNode root = new TreeNode(Integer.parseInt(vals[0]));
+        Deque<TreeNode> que = new LinkedList<>();
+        que.offer(root);
+        int idx = 1;
+        while (!que.isEmpty()) {
+            TreeNode node = que.poll();
+            if (!OjConstant.NULL_VALUE.equals(vals[idx])) {
+                node.left = new TreeNode(Integer.parseInt(vals[idx]));
+                que.offer(node.left);
+            }
+            idx++;
+            if (!OjConstant.NULL_VALUE.equals(vals[idx])) {
+                node.right = new TreeNode(Integer.parseInt(vals[idx]));
+                que.offer(node.right);
+            }
+            idx++;
+        }
+        return root;
     }
 
     private static TreeNode buildTree(String[] nums, int idx) {

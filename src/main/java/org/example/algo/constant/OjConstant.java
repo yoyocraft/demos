@@ -13,6 +13,7 @@ public interface OjConstant {
     String ASSERT_TEMPLATE = "expect: %s, actual: %s.%n";
 
     String EMPTY_LIST = "[]";
+    String EMPTY_TREE = "[]";
 
     String NULL_VALUE = "null";
 
