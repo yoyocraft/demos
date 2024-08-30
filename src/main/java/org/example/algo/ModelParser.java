@@ -2,6 +2,7 @@ package org.example.algo;
 
 import org.example.algo.constant.OjConstant;
 import org.example.algo.constant.SymbolConstant;
+import org.example.algo.model.ListNode;
 import org.example.algo.model.TreeNode;
 
 import java.util.Arrays;
@@ -125,6 +126,51 @@ public class ModelParser {
             idx++;
         }
         return root;
+    }
+
+    /**
+     * [a,b,c] => a -> b -> c
+     *
+     * @param s [item, item, ...]
+     * @return ListNode head node
+     */
+    public static ListNode buildList(String s) {
+        int[] nums = parseIntArray(s);
+        if (nums.length == 0) {
+            return null;
+        }
+
+        ListNode dummy = new ListNode();
+        ListNode cur = dummy;
+        for (int num : nums) {
+            cur.next = new ListNode(num);
+            cur = cur.next;
+        }
+        return dummy.next;
+    }
+
+    /**
+     * a -> b -> c => [a,b,c]
+     *
+     * @param head head node
+     * @return [item, item, ...]
+     */
+    public static String serializeList(ListNode head) {
+        if (head == null) {
+            return OjConstant.EMPTY_LIST;
+        }
+
+        StringBuilder serial = new StringBuilder(SymbolConstant.LEFT_BRACKET);
+        Deque<ListNode> que = new LinkedList<>();
+        que.offer(head);
+        while (!que.isEmpty()) {
+            ListNode node = que.poll();
+            if (node != null) {
+                serial.append(node.val).append(SymbolConstant.COMMA);
+                que.offer(node.next);
+            }
+        }
+        return serial.deleteCharAt(serial.length() - 1).append(SymbolConstant.RIGHT_BRACKET).toString();
     }
 
     private static TreeNode buildTree(String[] nums, int idx) {
