@@ -17,5 +17,5 @@ public interface OjConstant {
 
     String NULL_VALUE = "null";
 
-
+    String ARRAY_2D_SPLIT_PATTERN = "],\\[";
 }

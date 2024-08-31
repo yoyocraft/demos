@@ -9,6 +9,7 @@ import java.util.Arrays;
 import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 /**
@@ -16,6 +17,9 @@ import java.util.stream.Collectors;
  * @date 2024/08/28
  */
 public class ModelParser {
+
+    private static final Pattern ARRAY_2D_SPLIT_PATTERN = Pattern.compile(OjConstant.ARRAY_2D_SPLIT_PATTERN);
+
     /**
      * @param s [item, item, ...]
      * @return int[]
@@ -67,6 +71,21 @@ public class ModelParser {
                     }
                 })
                 .collect(Collectors.joining(SymbolConstant.COMMA, SymbolConstant.LEFT_BRACKET, SymbolConstant.RIGHT_BRACKET));
+    }
+
+    /**
+     * "[[...], [...]]" => int[][]
+     *
+     * @param s "[[...], [...]]"
+     * @return int[][]
+     */
+    public static int[][] parseIntArray2D(String s) {
+        String[] rows = ARRAY_2D_SPLIT_PATTERN.split(s.substring(2, s.length() - 2));
+        return Arrays.stream(rows)
+                .map(row -> Arrays.stream(row.split(SymbolConstant.COMMA))
+                        .mapToInt(Integer::parseInt)
+                        .toArray())
+                .toArray(int[][]::new);
     }
 
     public static TreeNode buildTree(String s) {

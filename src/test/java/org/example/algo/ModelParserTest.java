@@ -36,4 +36,11 @@ public class ModelParserTest {
         String serializedList = ModelParser.serializeList(head);
         assert s.equals(serializedList);
     }
+
+    @Test
+    public void test_parseIntArray2D() {
+        String s = "[[2,1,1],[1,1,0],[0,1,1]]";
+        int[][] nums = ModelParser.parseIntArray2D(s);
+        assert Arrays.deepEquals(nums, new int[][]{{2, 1, 1}, {1, 1, 0}, {0, 1, 1}});
+    }
 }
