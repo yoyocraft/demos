@@ -55,6 +55,12 @@
             <version>3.14.0</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.apache.kafka</groupId>
+            <artifactId>kafka-clients</artifactId>
+            <version>3.5.0</version>
+        </dependency>
+
         <!-- test -->
         <!-- https://mvnrepository.com/artifact/junit/junit -->
         <dependency>

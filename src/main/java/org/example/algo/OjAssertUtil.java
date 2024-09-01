@@ -53,6 +53,10 @@ public class OjAssertUtil {
             String line;
             StringBuilder tcsBuilder = new StringBuilder();
             while ((line = reader.readLine()) != null) {
+                // 开头 "#" 为注释，跳过
+                if (line.startsWith(SymbolConstant.HASH)) {
+                    continue;
+                }
                 tcsBuilder.append(line).append(SymbolConstant.NEW_LINE);
             }
             return tcsBuilder.toString();
