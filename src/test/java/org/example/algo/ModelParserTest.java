@@ -23,7 +23,7 @@ public class ModelParserTest {
 
     @Test
     public void test_buildTree() {
-        String s = "[-10,9,20,null,null,15,7]";
+        String s = "[1,3,2,5,null,null,9,6,null,7,null]";
         TreeNode root = ModelParser.buildTree(s);
         String serialized = ModelParser.serializeTree(root);
         System.out.println("serialized = " + serialized);

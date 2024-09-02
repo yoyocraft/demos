@@ -5,10 +5,7 @@ import org.example.algo.constant.SymbolConstant;
 import org.example.algo.model.ListNode;
 import org.example.algo.model.TreeNode;
 
-import java.util.Arrays;
-import java.util.Deque;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
@@ -94,7 +91,7 @@ public class ModelParser {
             return null;
         }
         // 构造
-        return buildTree(nums, 0);
+        return buildTree(nums);
     }
 
     public static String serializeTree(TreeNode root) {
@@ -192,6 +189,7 @@ public class ModelParser {
         return serial.deleteCharAt(serial.length() - 1).append(SymbolConstant.RIGHT_BRACKET).toString();
     }
 
+    @Deprecated
     private static TreeNode buildTree(String[] nums, int idx) {
         if (idx >= nums.length || OjConstant.NULL_VALUE.equals(nums[idx])) {
             return null;
@@ -199,6 +197,29 @@ public class ModelParser {
         TreeNode root = new TreeNode(Integer.parseInt(nums[idx]));
         root.left = buildTree(nums, 2 * idx + 1);
         root.right = buildTree(nums, 2 * idx + 2);
+        return root;
+    }
+
+    private static TreeNode buildTree(String[] nums) {
+        if (nums == null || nums.length == 0 || OjConstant.NULL_VALUE.equals(nums[0])) {
+            return null;
+        }
+
+        int idx = 0, n = nums.length;
+        TreeNode root = new TreeNode(Integer.parseInt(nums[idx]));
+        Deque<TreeNode> nodeQue = new ArrayDeque<>();
+        nodeQue.offer(root);
+        while (!nodeQue.isEmpty()) {
+            TreeNode node = nodeQue.poll();
+            if (++idx < n && !OjConstant.NULL_VALUE.equals(nums[idx])) {
+                node.left = new TreeNode(Integer.parseInt(nums[idx]));
+                nodeQue.offer(node.left);
+            }
+            if (++idx < n && !OjConstant.NULL_VALUE.equals(nums[idx])) {
+                node.right = new TreeNode(Integer.parseInt(nums[idx]));
+                nodeQue.offer(node.right);
+            }
+        }
         return root;
     }
 }
