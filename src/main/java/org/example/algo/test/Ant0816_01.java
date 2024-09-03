@@ -21,7 +21,7 @@ public class Ant0816_01 {
             }
         }
 
-        int ans = 0;
+        int ans;
         if (pos == -1) {
             // 没有，全部都是一个一个添加
             ans = n;

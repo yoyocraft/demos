@@ -13,5 +13,9 @@ public interface OjConstant {
     String EMPTY_LIST = "[]";
     String EMPTY_TREE = "[]";
     String NULL_VALUE = "null";
+
+    /**
+     * 二维数组分隔符
+     */
     String ARRAY_2D_SPLIT_PATTERN = "],\\[";
 }

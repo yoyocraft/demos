@@ -2,18 +2,13 @@ package org.example.algo;
 
 import org.example.algo.constant.OjConstant;
 import org.example.algo.constant.SymbolConstant;
-import org.example.algo.model.TreeNode;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Arrays;
-import java.util.List;
 import java.util.function.Consumer;
-import java.util.function.Function;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * @author yoyocraft

@@ -5,7 +5,11 @@ import org.example.algo.constant.SymbolConstant;
 import org.example.algo.model.ListNode;
 import org.example.algo.model.TreeNode;
 
-import java.util.*;
+import java.util.ArrayDeque;
+import java.util.Arrays;
+import java.util.Deque;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
@@ -77,6 +81,7 @@ public class ModelParser {
      * @return int[][]
      */
     public static int[][] parseIntArray2D(String s) {
+        // [[...],[...],...] => ...],[...],[...
         String[] rows = ARRAY_2D_SPLIT_PATTERN.split(s.substring(2, s.length() - 2));
         return Arrays.stream(rows)
                 .map(row -> Arrays.stream(row.split(SymbolConstant.COMMA))
@@ -90,7 +95,6 @@ public class ModelParser {
         if (nums.length == 0) {
             return null;
         }
-        // 构造
         return buildTree(nums);
     }
 
@@ -189,17 +193,6 @@ public class ModelParser {
         return serial.deleteCharAt(serial.length() - 1).append(SymbolConstant.RIGHT_BRACKET).toString();
     }
 
-    @Deprecated
-    private static TreeNode buildTree(String[] nums, int idx) {
-        if (idx >= nums.length || OjConstant.NULL_VALUE.equals(nums[idx])) {
-            return null;
-        }
-        TreeNode root = new TreeNode(Integer.parseInt(nums[idx]));
-        root.left = buildTree(nums, 2 * idx + 1);
-        root.right = buildTree(nums, 2 * idx + 2);
-        return root;
-    }
-
     private static TreeNode buildTree(String[] nums) {
         if (nums == null || nums.length == 0 || OjConstant.NULL_VALUE.equals(nums[0])) {
             return null;
@@ -220,6 +213,21 @@ public class ModelParser {
                 nodeQue.offer(node.right);
             }
         }
+        return root;
+    }
+
+    /**
+     * @see ModelParser#buildTree(String[])
+     * @deprecated
+     */
+    @Deprecated
+    private static TreeNode buildTree(String[] nums, int idx) {
+        if (idx >= nums.length || OjConstant.NULL_VALUE.equals(nums[idx])) {
+            return null;
+        }
+        TreeNode root = new TreeNode(Integer.parseInt(nums[idx]));
+        root.left = buildTree(nums, 2 * idx + 1);
+        root.right = buildTree(nums, 2 * idx + 2);
         return root;
     }
 }
