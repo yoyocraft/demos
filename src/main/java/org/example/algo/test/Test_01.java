@@ -2,6 +2,7 @@ package org.example.algo.test;
 
 import org.example.algo.ModelParser;
 import org.example.algo.OjAssertUtil;
+import org.example.algo.TargetType;
 import org.example.algo.constant.SymbolConstant;
 
 import java.util.Arrays;
@@ -22,7 +23,7 @@ public class Test_01 {
             int expect = Integer.parseInt(inOut[3]);
             int actual = test01.getCount(a, b, target);
             OjAssertUtil.assertEquals(expect, actual);
-        }, "test_01");
+        }, "test_01", TargetType.TEST);
     }
 
     private int getCount(int[] a, int[] b, int target) {
