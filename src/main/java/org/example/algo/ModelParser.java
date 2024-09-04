@@ -27,7 +27,7 @@ public class ModelParser {
      */
     public static int[] parseIntArray(String s) {
         if (s.isEmpty()) {
-            return null;
+            return new int[0];
         }
         return Arrays.stream(s.substring(1, s.length() - 1).split(SymbolConstant.COMMA))
                 .mapToInt(Integer::parseInt)
