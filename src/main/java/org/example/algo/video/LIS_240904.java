@@ -10,7 +10,7 @@ import org.example.algo.TargetType;
 public class LIS_240904 {
 
     public static void main(String[] args) {
-        LIS_240904 test = new LIS_240904();
+        LIS_240904 solution = new LIS_240904();
         OjAssertUtil.judgeResult((tc) -> {
             // TODO youyi 2024/9/4 测试
         }, "lis_240904", TargetType.VIDEO);

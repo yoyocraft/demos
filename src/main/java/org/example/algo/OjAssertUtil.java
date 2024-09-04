@@ -17,8 +17,7 @@ import java.util.function.Consumer;
 public class OjAssertUtil {
 
     public static void judgeResult(Consumer<String> assertion, String fileName) {
-        Arrays.stream(readFile(fileName).split(SymbolConstant.NEW_LINE))
-                .forEach(assertion);
+        judgeResult(assertion, fileName, TargetType.LC);
     }
 
     public static void judgeResult(Consumer<String> assertion, String fileName, TargetType targetType) {
@@ -44,8 +43,12 @@ public class OjAssertUtil {
         }
     }
 
-    private static String readFile(String fileName) {
-        return readFile(fileName, TargetType.LC);
+    @Deprecated
+    private static void assumeTimeCost(Consumer<String> assertion, String tc) {
+        long start = System.currentTimeMillis();
+        assertion.accept(tc);
+        long end = System.currentTimeMillis();
+        System.out.printf(OjConstant.TIME_COST_TEMPLATE, tc, end - start);
     }
 
     private static String readFile(String fileName, TargetType targetType) {

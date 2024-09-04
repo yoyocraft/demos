@@ -26,6 +26,9 @@ public class ModelParser {
      * @return int[]
      */
     public static int[] parseIntArray(String s) {
+        if (s.isEmpty()) {
+            return null;
+        }
         return Arrays.stream(s.substring(1, s.length() - 1).split(SymbolConstant.COMMA))
                 .mapToInt(Integer::parseInt)
                 .toArray();
@@ -49,9 +52,25 @@ public class ModelParser {
      * @return [item, item, ...]
      */
     public static String parseString(int[] nums) {
-        return java.lang.String.format(OjConstant.ARRAY_TEMPLATE, Arrays.stream(nums)
+        if (nums == null || nums.length == 0) {
+            return OjConstant.EMPTY_LIST;
+        }
+        return String.format(OjConstant.ARRAY_TEMPLATE, Arrays.stream(nums)
                 .mapToObj(java.lang.String::valueOf)
                 .collect(Collectors.joining(SymbolConstant.COMMA)));
+    }
+
+    /**
+     * @param nums 2d array
+     * @return [[item, item],[item],...]
+     */
+    public static String parseString(int[][] nums) {
+        if (nums == null || nums.length == 0) {
+            return OjConstant.EMPTY_LIST;
+        }
+        return Arrays.stream(nums)
+                .map(ModelParser::parseString)
+                .collect(Collectors.joining(SymbolConstant.COMMA, SymbolConstant.LEFT_BRACKET, SymbolConstant.RIGHT_BRACKET));
     }
 
     /**

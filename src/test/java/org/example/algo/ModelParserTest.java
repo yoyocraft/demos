@@ -22,14 +22,6 @@ public class ModelParserTest {
     }
 
     @Test
-    public void test_buildTree() {
-        String s = "[1,3,2,5,null,null,9,6,null,7,null]";
-        TreeNode root = ModelParser.buildTree(s);
-        String serialized = ModelParser.serializeTree(root);
-        System.out.println("serialized = " + serialized);
-    }
-
-    @Test
     public void test_buildList() {
         String s = "[1,2,3,4,5,6,7]";
         ListNode head = ModelParser.buildList(s);
@@ -42,5 +34,11 @@ public class ModelParserTest {
         String s = "[[2,1,1],[1,1,0],[0,1,1]]";
         int[][] nums = ModelParser.parseIntArray2D(s);
         assert Arrays.deepEquals(nums, new int[][]{{2, 1, 1}, {1, 1, 0}, {0, 1, 1}});
+    }
+
+    @Test
+    public void test_parserString_2D_Array() {
+        int[][] nums = new int[][]{{1, 2, 3}, {4, 5, 6}};
+        assert "[[1,2,3],[4,5,6]]".equals(ModelParser.parseString(nums));
     }
 }
