@@ -1,7 +1,6 @@
 package org.example.algo;
 
 import org.example.algo.model.ListNode;
-import org.example.algo.model.TreeNode;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -19,6 +18,12 @@ public class ModelParserTest {
         assert "[1,2,3]".equals(result);
         List<List<Integer>> listList = Arrays.asList(Arrays.asList(1, 2), Arrays.asList(3, 4));
         assert "[[1,2],[3,4]]".equals(ModelParser.parseString(listList));
+
+        List<List<String>> stringList = Arrays.asList(
+                Arrays.asList(".Q..", "...Q", "Q...", "..Q."),
+                Arrays.asList("..Q.", "Q...", "...Q", ".Q..")
+        );
+        assert "[[.Q..,...Q,Q...,..Q.],[..Q.,Q...,...Q,.Q..]]".equals(ModelParser.parseString(stringList));
     }
 
     @Test
