@@ -192,9 +192,9 @@ public class ModelParser {
      * a -> b -> c => [a,b,c]
      *
      * @param head head node
-     * @return [item, item, ...]
+     * @return [item,item,...]
      */
-    public static String serializeList(ListNode head) {
+    public static String parseString(ListNode head) {
         if (head == null) {
             return OjConstant.EMPTY_LIST;
         }

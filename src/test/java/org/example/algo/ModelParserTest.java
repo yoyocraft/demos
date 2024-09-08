@@ -30,7 +30,7 @@ public class ModelParserTest {
     public void test_buildList() {
         String s = "[1,2,3,4,5,6,7]";
         ListNode head = ModelParser.buildList(s);
-        String serializedList = ModelParser.serializeList(head);
+        String serializedList = ModelParser.parseString(head);
         assert s.equals(serializedList);
     }
 
