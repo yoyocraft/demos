@@ -26,7 +26,7 @@ public class ModelParser {
      * @return int[]
      */
     public static int[] parseIntArray(String s) {
-        if (s.isEmpty()) {
+        if (s.length() <= 2) {
             return new int[0];
         }
         return Arrays.stream(s.substring(1, s.length() - 1).split(SymbolConstant.COMMA))
@@ -55,9 +55,12 @@ public class ModelParser {
         if (nums == null || nums.length == 0) {
             return OjConstant.EMPTY_LIST;
         }
-        return String.format(OjConstant.ARRAY_TEMPLATE, Arrays.stream(nums)
-                .mapToObj(java.lang.String::valueOf)
-                .collect(Collectors.joining(SymbolConstant.COMMA)));
+        return String.format(
+                OjConstant.ARRAY_TEMPLATE,
+                Arrays.stream(nums)
+                        .mapToObj(String::valueOf)
+                        .collect(Collectors.joining(SymbolConstant.COMMA))
+        );
     }
 
     /**
@@ -192,7 +195,7 @@ public class ModelParser {
      * a -> b -> c => [a,b,c]
      *
      * @param head head node
-     * @return [item,item,...]
+     * @return [item, item, ...]
      */
     public static String parseString(ListNode head) {
         if (head == null) {

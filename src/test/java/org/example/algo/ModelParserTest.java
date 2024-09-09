@@ -46,4 +46,10 @@ public class ModelParserTest {
         int[][] nums = new int[][]{{1, 2, 3}, {4, 5, 6}};
         assert "[[1,2,3],[4,5,6]]".equals(ModelParser.parseString(nums));
     }
+
+    @Test
+    public void test_parseString_1D_Array() {
+        int[] nums = {-1, -1};
+        assert "[-1,-1]".equals(ModelParser.parseString(nums));
+    }
 }
