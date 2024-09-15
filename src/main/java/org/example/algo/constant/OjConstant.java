@@ -10,7 +10,6 @@ public interface OjConstant {
     String TEST_CASE_PATH_TEMPLATE = TEST_CASE_BASE_PATH + "%s/%s";
     String ARRAY_TEMPLATE = "[%s]";
     String ASSERT_TEMPLATE = "expect: %s, actual: %s.%n";
-    String TIME_COST_TEMPLATE = "tc: %s, cost: %sms%n";
     String EMPTY_LIST = "[]";
     String EMPTY_TREE = "[]";
     String NULL_VALUE = "null";

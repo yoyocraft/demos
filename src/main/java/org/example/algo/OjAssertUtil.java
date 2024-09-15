@@ -43,14 +43,6 @@ public class OjAssertUtil {
         }
     }
 
-    @Deprecated
-    private static void assumeTimeCost(Consumer<String> assertion, String tc) {
-        long start = System.currentTimeMillis();
-        assertion.accept(tc);
-        long end = System.currentTimeMillis();
-        System.out.printf(OjConstant.TIME_COST_TEMPLATE, tc, end - start);
-    }
-
     private static String readFile(String fileName, TargetType targetType) {
         ClassLoader classLoader = OjAssertUtil.class.getClassLoader();
         URL url = classLoader.getResource(getFilePath(fileName, targetType));
