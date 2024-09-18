@@ -1,4 +1,4 @@
-package org.example.demo;
+package org.example.algo.test;
 
 import java.util.Arrays;
 

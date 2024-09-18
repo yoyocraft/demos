@@ -1,4 +1,4 @@
-package org.example.cache;
+package org.example.algo.prac;
 
 import java.util.LinkedHashMap;
 import java.util.Map.Entry;
