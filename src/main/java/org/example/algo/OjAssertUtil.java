@@ -43,6 +43,12 @@ public class OjAssertUtil {
         }
     }
 
+    public static void assertEquals(long excepted, long actual) {
+        if (excepted != actual) {
+            System.err.printf(OjConstant.ASSERT_TEMPLATE, excepted, actual);
+        }
+    }
+
     private static String readFile(String fileName, TargetType targetType) {
         ClassLoader classLoader = OjAssertUtil.class.getClassLoader();
         URL url = classLoader.getResource(getFilePath(fileName, targetType));
