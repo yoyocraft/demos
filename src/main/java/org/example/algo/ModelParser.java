@@ -112,6 +112,22 @@ public class ModelParser {
                 .toArray(int[][]::new);
     }
 
+    /**
+     * "[[...], [...]]" => char[][]
+     *
+     * @param s "[[...], [...]]"
+     * @return int[][]
+     */
+    public static char[][] parseCharacterArray2D(String s) {
+        // [[...],[...],...] => ...],[...],[...
+        String[] rows = ARRAY_2D_SPLIT_PATTERN.split(s.substring(2, s.length() - 2));
+        return Arrays.stream(rows)
+                // 去掉行中的无效字符（空格、方括号、逗号等）
+                .map(row -> row.replaceAll("[\\[\\]\\s,\"]", ""))
+                .map(String::toCharArray)
+                .toArray(char[][]::new);
+    }
+
     public static TreeNode buildTree(String s) {
         String[] nums = parseStringArray(s);
         if (nums.length == 0) {

@@ -52,4 +52,11 @@ public class ModelParserTest {
         int[] nums = {-1, -1};
         assert "[-1,-1]".equals(ModelParser.parseString(nums));
     }
+
+    @Test
+    public void test_parseCharacterArray2D() {
+        String s = "[[A,B,C,E],[S,F,C,S],[A,D,E,E]]";
+        char[][] chars = ModelParser.parseCharacterArray2D(s);
+        assert Arrays.deepEquals(chars, new char[][]{{'A', 'B', 'C', 'E'}, {'S', 'F', 'C', 'S'}, {'A', 'D', 'E', 'E'}});
+    }
 }
