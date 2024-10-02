@@ -1,0 +1,18 @@
+[
+  {
+    "id": 2,
+    "name": "Bob",
+    "address": {
+      "city": "LA",
+      "street": "Sunset Blvd"
+    }
+  },
+  {
+    "id": 1,
+    "name": "Alice",
+    "address": {
+      "city": "NY",
+      "street": "5th Ave"
+    }
+  }
+]
