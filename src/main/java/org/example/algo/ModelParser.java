@@ -6,10 +6,12 @@ import org.example.algo.model.ListNode;
 import org.example.algo.model.TreeNode;
 
 import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
@@ -20,6 +22,8 @@ import java.util.stream.Collectors;
 public class ModelParser {
 
     private static final Pattern ARRAY_2D_SPLIT_PATTERN = Pattern.compile(OjConstant.ARRAY_2D_SPLIT_PATTERN);
+    private static final Pattern LIST_PATTERN = Pattern.compile(OjConstant.LIST_PATTERN);
+
 
     /**
      * @param s [item, item, ...]
@@ -126,6 +130,36 @@ public class ModelParser {
                 .map(row -> row.replaceAll("[\\[\\]\\s,\"]", ""))
                 .map(String::toCharArray)
                 .toArray(char[][]::new);
+    }
+
+    /**
+     * "[[...], [...]]" => List
+     *
+     * @param s "[[...], [...]]"
+     * @return List
+     */
+    public static <T> List<List<T>> parseList2D(String s, Class<T> type) {
+        List<List<T>> result = new ArrayList<>();
+
+        Matcher listMatcher = LIST_PATTERN.matcher(s);
+
+        while (listMatcher.find()) {
+            // Extract each inner list string (e.g., "1, 2")
+            String listString = listMatcher.group(1);
+            // Split the elements by commas
+            String[] elements = listString.split(",");
+
+            List<T> innerList = new ArrayList<>();
+            for (String element : elements) {
+                element = element.trim();
+                T value = castToType(element, type);
+                innerList.add(value);
+            }
+
+            result.add(innerList);
+        }
+
+        return result;
     }
 
     public static TreeNode buildTree(String s) {
@@ -252,6 +286,19 @@ public class ModelParser {
             }
         }
         return root;
+    }
+
+    @SuppressWarnings("unchecked")
+    private static <T> T castToType(String value, Class<T> type) {
+        if (type == Integer.class) {
+            return (T) Integer.valueOf(value);
+        } else if (type == Double.class) {
+            return (T) Double.valueOf(value);
+        } else if (type == String.class) {
+            return (T) value;
+        } else {
+            throw new IllegalArgumentException("Unsupported type: " + type.getName());
+        }
     }
 
     /**

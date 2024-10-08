@@ -1,5 +1,8 @@
 package org.example.algo;
 
+import cn.hutool.json.JSONUtil;
+import com.google.common.base.Preconditions;
+import com.google.common.base.Predicates;
 import org.example.algo.model.ListNode;
 import org.junit.Test;
 
@@ -58,5 +61,13 @@ public class ModelParserTest {
         String s = "[[A,B,C,E],[S,F,C,S],[A,D,E,E]]";
         char[][] chars = ModelParser.parseCharacterArray2D(s);
         assert Arrays.deepEquals(chars, new char[][]{{'A', 'B', 'C', 'E'}, {'S', 'F', 'C', 'S'}, {'A', 'D', 'E', 'E'}});
+    }
+
+    @Test
+    public void test_parseList2D() {
+        String s = "[[London,New York],[New York,Lima],[Lima,Sao Paulo]]";
+        List<List<String>> lists = ModelParser.parseList2D(s, String.class);
+        Preconditions.checkNotNull(lists);
+        Preconditions.checkArgument(lists.stream().allMatch(Predicates.notNull()));
     }
 }

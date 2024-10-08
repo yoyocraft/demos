@@ -18,4 +18,5 @@ public interface OjConstant {
      * 二维数组分隔符
      */
     String ARRAY_2D_SPLIT_PATTERN = "],\\[";
+    String LIST_PATTERN = "\\[(.*?)]";
 }
