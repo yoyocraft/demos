@@ -12,4 +12,5 @@ public interface SymbolConstant {
     String LEFT_BRACKET = "[";
     String RIGHT_BRACKET = "]";
     String HASH = "#";
+    String UNDER_LINE = "_";
 }
