@@ -21,8 +21,14 @@ public class LocalLock {
     public void executeWithLock(String key, long timeout, TimeUnit unit, Runnable task) throws InterruptedException {
         Lock lock = lockCache.getIfPresent(key);
         if (lock == null) {
-            lock = new ReentrantLock();
-            lockCache.put(key, lock);
+            synchronized (this) {
+                // 双重检查
+                lock = lockCache.getIfPresent(key);
+                if (lock == null) {
+                    lock = new ReentrantLock();
+                    lockCache.put(key, lock);
+                }
+            }
         }
 
         boolean locked = lock.tryLock(timeout, unit);
