@@ -20,6 +20,11 @@ public enum TargetType {
      * for test
      */
     TEST,
+
+    /**
+     * 剑指offer
+     */
+    JZ
     ;
 
     public static String getTargetName(TargetType targetType) {
