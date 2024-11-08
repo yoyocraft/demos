@@ -11,6 +11,7 @@ import java.util.Arrays;
 import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -130,6 +131,30 @@ public class ModelParser {
                 .map(row -> row.replaceAll("[\\[\\]\\s,\"]", ""))
                 .map(String::toCharArray)
                 .toArray(char[][]::new);
+    }
+
+    /**
+     * "[...]" => List
+     *
+     * @param s "[...]"
+     * @return List
+     */
+    public static <T> List<T> parseList(String s, Class<T> type) {
+        return Arrays.stream(parseStringArray(s))
+                .map(element -> castToType(element, type))
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * "[...]" => Set
+     *
+     * @param s "[...]"
+     * @return Set
+     */
+    public static <T> Set<T> parseSet(String s, Class<T> type) {
+        return Arrays.stream(parseStringArray(s))
+                .map(element -> castToType(element, type))
+                .collect(Collectors.toSet());
     }
 
     /**

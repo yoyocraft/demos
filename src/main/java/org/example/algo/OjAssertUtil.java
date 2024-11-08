@@ -25,28 +25,26 @@ public class OjAssertUtil {
                 .forEach(assertion);
     }
 
-    public static void assertEquals(String excepted, String actual) {
-        if (!excepted.equals(actual)) {
-            System.err.printf(OjConstant.ASSERT_TEMPLATE, excepted, actual);
+    public static void assertTrue(boolean condition, String message) {
+        if (!condition) {
+            System.err.println(message);
         }
+    }
+
+    public static void assertEquals(String excepted, String actual) {
+        assertTrue(excepted.equals(actual), String.format(OjConstant.ASSERT_TEMPLATE, excepted, actual));
     }
 
     public static void assertEquals(int excepted, int actual) {
-        if (excepted != actual) {
-            System.err.printf(OjConstant.ASSERT_TEMPLATE, excepted, actual);
-        }
+        assertTrue(excepted == actual, String.format(OjConstant.ASSERT_TEMPLATE, excepted, actual));
     }
 
     public static void assertEquals(boolean excepted, boolean actual) {
-        if (excepted != actual) {
-            System.err.printf(OjConstant.ASSERT_TEMPLATE, excepted, actual);
-        }
+        assertTrue(excepted == actual, String.format(OjConstant.ASSERT_TEMPLATE, excepted, actual));
     }
 
     public static void assertEquals(long excepted, long actual) {
-        if (excepted != actual) {
-            System.err.printf(OjConstant.ASSERT_TEMPLATE, excepted, actual);
-        }
+        assertTrue(excepted == actual, String.format(OjConstant.ASSERT_TEMPLATE, excepted, actual));
     }
 
     private static String readFile(String fileName, TargetType targetType) {
