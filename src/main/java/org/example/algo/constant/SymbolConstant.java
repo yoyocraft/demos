@@ -13,4 +13,5 @@ public interface SymbolConstant {
     String RIGHT_BRACKET = "]";
     String HASH = "#";
     String UNDER_LINE = "_";
+    String DOLLAR = "$";
 }
