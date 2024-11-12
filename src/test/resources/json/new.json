@@ -4,7 +4,8 @@
     "name": "Alice",
     "address": {
       "city": "NY",
-      "street": "5th Ave"
+      "street": "5th Ave",
+      "zip": 12345
     }
   },
   {
@@ -12,7 +13,8 @@
     "name": "Bob",
     "address": {
       "city": "LA",
-      "street": "Sunset Blvd"
+      "street": "Sunset Blvd",
+      "zip": 67890
     }
   }
 ]
