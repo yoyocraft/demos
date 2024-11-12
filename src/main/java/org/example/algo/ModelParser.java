@@ -207,8 +207,11 @@ public class ModelParser {
             TreeNode node = que.poll();
             if (node != null) {
                 serial.append(node.val).append(SymbolConstant.COMMA);
-                que.offer(node.left);
-                que.offer(node.right);
+                // 仅当 node 不是叶子节点时才加入其子节点
+                if (node.left != null || node.right != null) {
+                    que.offer(node.left);
+                    que.offer(node.right);
+                }
             } else {
                 serial.append(OjConstant.NULL_VALUE).append(SymbolConstant.COMMA);
             }
