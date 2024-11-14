@@ -3,6 +3,7 @@ package org.example.algo;
 import org.example.algo.constant.OjConstant;
 import org.example.algo.constant.SymbolConstant;
 import org.example.algo.model.ListNode;
+import org.example.algo.model.TreeLinkNode;
 import org.example.algo.model.TreeNode;
 
 import java.util.ArrayDeque;
@@ -195,6 +196,14 @@ public class ModelParser {
         return buildTree(nums);
     }
 
+    public static TreeLinkNode buildLinkTree(String s) {
+        String[] nums = parseStringArray(s);
+        if (nums.length == 0) {
+            return null;
+        }
+        return buildTreeLink(nums);
+    }
+
     public static String serializeTree(TreeNode root) {
         if (root == null) {
             return OjConstant.EMPTY_TREE;
@@ -315,6 +324,33 @@ public class ModelParser {
         }
         return root;
     }
+
+    private static TreeLinkNode buildTreeLink(String[] nums) {
+        if (nums == null || nums.length == 0 || OjConstant.NULL_VALUE.equals(nums[0])) {
+            return null;
+        }
+        int idx = 0, n = nums.length;
+        TreeLinkNode root = new TreeLinkNode(Integer.parseInt(nums[idx]));
+        Deque<TreeLinkNode> nodeQue = new ArrayDeque<>();
+        nodeQue.offer(root);
+        while (!nodeQue.isEmpty()) {
+            TreeLinkNode node = nodeQue.poll();
+
+            // 在当前节点上，设置其子节点的父节点指向自己
+            if (++idx < n && !OjConstant.NULL_VALUE.equals(nums[idx])) {
+                node.left = new TreeLinkNode(Integer.parseInt(nums[idx]));
+                node.left.next = node;
+                nodeQue.offer(node.left);
+            }
+            if (++idx < n && !OjConstant.NULL_VALUE.equals(nums[idx])) {
+                node.right = new TreeLinkNode(Integer.parseInt(nums[idx]));
+                node.right.next = node;
+                nodeQue.offer(node.right);
+            }
+        }
+        return root;
+    }
+
 
     @SuppressWarnings("unchecked")
     private static <T> T castToType(String value, Class<T> type) {

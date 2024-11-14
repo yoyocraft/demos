@@ -4,10 +4,14 @@ import cn.hutool.json.JSONUtil;
 import com.google.common.base.Preconditions;
 import com.google.common.base.Predicates;
 import org.example.algo.model.ListNode;
+import org.example.algo.model.TreeLinkNode;
 import org.junit.Test;
 
+import java.util.ArrayDeque;
 import java.util.Arrays;
+import java.util.Deque;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @author yoyocraft
@@ -69,5 +73,31 @@ public class ModelParserTest {
         List<List<String>> lists = ModelParser.parseList2D(s, String.class);
         Preconditions.checkNotNull(lists);
         Preconditions.checkArgument(lists.stream().allMatch(Predicates.notNull()));
+    }
+
+    @Test
+    public void test_buildLinkTree() {
+        String formatPattern = "val: %s, left: %s, right: %s, next: %s%n";
+        String s = "[8,6,10,5,7,9,11]";
+        TreeLinkNode root = ModelParser.buildLinkTree(s);
+        TreeLinkNode cursor = root;
+        Deque<TreeLinkNode> nodeQue = new ArrayDeque<>();
+        nodeQue.offer(cursor);
+        while (!nodeQue.isEmpty()) {
+            cursor = nodeQue.poll();
+            System.out.printf(
+                    formatPattern,
+                    cursor.val,
+                    Optional.ofNullable(cursor.left).orElseGet(() -> new TreeLinkNode(0)).val,
+                    Optional.ofNullable(cursor.right).orElseGet(() -> new TreeLinkNode(0)).val,
+                    Optional.ofNullable(cursor.next).orElseGet(() -> new TreeLinkNode(0)).val
+            );
+            if (cursor.left != null) {
+                nodeQue.offer(cursor.left);
+            }
+            if (cursor.right != null) {
+                nodeQue.offer(cursor.right);
+            }
+        }
     }
 }
