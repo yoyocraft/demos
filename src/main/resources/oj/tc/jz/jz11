@@ -1,0 +1,2 @@
+[[a,b,c,e],[s,f,c,s],[a,d,e,e]] abcced true
+[[a,b,c,e],[s,f,c,s],[a,d,e,e]] abcb false
